@@ -9,6 +9,9 @@ int productQty = 0;
 decimal productSum = 0;
 int numOption;
 
+decimal maxDiscount = 0.10m;
+decimal minDiscount = 0.05m;
+
 do
 {
 
@@ -45,3 +48,23 @@ do
 while (numOption != 2);
     Console.WriteLine($"Cantidad total de productos: {productQty}");
     Console.WriteLine($"Suma total de los precios: {productSum}");
+
+
+ if (productSum <= 20000) 
+        {
+            Console.WriteLine($"Suma total de los precios: {productSum}");
+        }
+    else if ( productSum < 50000) 
+        {
+        decimal discount = productSum * minDiscount;
+        Console.WriteLine($"Subtotal de los precios: {productSum}");
+        Console.WriteLine($"Descuento aplicado: {discount} (5%)");
+        Console.WriteLine($"Total de los precios: {productSum - discount}");
+    }
+    else if (productSum >= 50000)
+    {
+        decimal discount = productSum * maxDiscount;
+        Console.WriteLine($"Subtotal de los precios: {productSum}");
+        Console.WriteLine($"Descuento aplicado: {discount} (10%)");
+        Console.WriteLine($"Total de los precios: {productSum - discount}");
+    }
