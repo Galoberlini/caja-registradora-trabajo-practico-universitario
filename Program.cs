@@ -1,2 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿Console.WriteLine("==== KIOSCO ====");
+Console.Write("Nombre del cajero: ");
+
+string name =  Console.ReadLine();
+
+Console.WriteLine($"Bienvenido {name}, Caja abierta");
