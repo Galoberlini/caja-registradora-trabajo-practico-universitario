@@ -46,9 +46,11 @@ do
 }
 
 while (numOption != 2);
-    Console.WriteLine($"Cantidad total de productos: {productQty}");
-    Console.WriteLine($"Suma total de los precios: {productSum}");
 
+Console.WriteLine($"Cantidad total de productos: {productQty}");
+Console.WriteLine($"Suma total de los precios: {productSum}");
+
+decimal totalDiscount = productSum;
 
  if (productSum <= 20000) 
         {
@@ -57,6 +59,8 @@ while (numOption != 2);
     else if ( productSum < 50000) 
         {
         decimal discount = productSum * minDiscount;
+        totalDiscount = productSum - discount;
+
         Console.WriteLine($"Subtotal de los precios: {productSum}");
         Console.WriteLine($"Descuento aplicado: {discount} (5%)");
         Console.WriteLine($"Total de los precios: {productSum - discount}");
@@ -64,7 +68,52 @@ while (numOption != 2);
     else if (productSum >= 50000)
     {
         decimal discount = productSum * maxDiscount;
+        totalDiscount = productSum - discount;
+
         Console.WriteLine($"Subtotal de los precios: {productSum}");
         Console.WriteLine($"Descuento aplicado: {discount} (10%)");
         Console.WriteLine($"Total de los precios: {productSum - discount}");
     }
+
+int opt;
+
+do
+{
+
+Console.WriteLine("Medio de pago: ");
+Console.WriteLine("1 - Efectivo ");
+Console.WriteLine("2 - Débito ");
+Console.WriteLine("3 - Crédito ");
+Console.Write("Marque el número del método que prefiera: ");
+
+opt = int.Parse(Console.ReadLine());
+
+switch (opt)
+{
+    case 1:
+        decimal discount = totalDiscount * maxDiscount;
+
+        Console.WriteLine("Tiene un 10% de descuento adicional!");
+        Console.WriteLine($"Su total a pagar ahora es de: {totalDiscount - discount}");
+        break;
+
+    case 2:
+        Console.WriteLine($"El total a pagar es de: {totalDiscount}");
+        break;
+
+    case 3:
+        decimal maxCharge = 0.15m;
+        decimal extCharge = totalDiscount * maxCharge;
+
+        Console.WriteLine("Tiene un 15% de RECARGO");
+        Console.WriteLine($"Su total a pagar ahora es de: {totalDiscount + extCharge} ");
+        break;
+
+    default:
+        Console.WriteLine("Input desconocido, marque nuevamente");
+        break;
+    }
+} while (opt > 3 || opt < 1);
+
+Console.ReadKey();
+    
