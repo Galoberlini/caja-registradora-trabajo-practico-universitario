@@ -51,6 +51,8 @@ Console.WriteLine($"Cantidad total de productos: {productQty}");
 Console.WriteLine($"Suma total de los precios: {productSum}");
 
 decimal totalDiscount = productSum;
+decimal discount = 0.0m;
+decimal totalCharge = 0.0m;
 
  if (productSum <= 20000) 
         {
@@ -58,7 +60,7 @@ decimal totalDiscount = productSum;
         }
     else if ( productSum < 50000) 
         {
-        decimal discount = productSum * minDiscount;
+        discount = productSum * minDiscount;
         totalDiscount = productSum - discount;
 
         Console.WriteLine($"Subtotal de los precios: {productSum}");
@@ -67,7 +69,7 @@ decimal totalDiscount = productSum;
     }
     else if (productSum >= 50000)
     {
-        decimal discount = productSum * maxDiscount;
+        discount = productSum * maxDiscount;
         totalDiscount = productSum - discount;
 
         Console.WriteLine($"Subtotal de los precios: {productSum}");
@@ -91,7 +93,8 @@ opt = int.Parse(Console.ReadLine());
 switch (opt)
 {
     case 1:
-        decimal discount = totalDiscount * maxDiscount;
+        decimal dsc = totalDiscount * maxDiscount;
+        discount += dsc;
 
         Console.WriteLine("Tiene un 10% de descuento adicional!");
         Console.WriteLine($"Su total a pagar ahora es de: {totalDiscount - discount}");
@@ -104,6 +107,7 @@ switch (opt)
     case 3:
         decimal maxCharge = 0.15m;
         decimal extCharge = totalDiscount * maxCharge;
+        totalCharge += extCharge;
 
         Console.WriteLine("Tiene un 15% de RECARGO");
         Console.WriteLine($"Su total a pagar ahora es de: {totalDiscount + extCharge} ");
@@ -112,8 +116,29 @@ switch (opt)
     default:
         Console.WriteLine("Input desconocido, marque nuevamente");
         break;
-    }
-} while (opt > 3 || opt < 1);
 
-Console.ReadKey();
+}} while (opt > 3 || opt < 1);
+
+Console.WriteLine();
+Console.WriteLine();
+
+decimal total = productSum - discount + totalCharge;
+
+    for (int i = 0; i < 30; i++) Console.Write('-');
+    Console.WriteLine();
+    Console.WriteLine("KIOSCO");
+    for (int i = 0; i < 30; i++) Console.Write('-');
+    Console.WriteLine();
+    Console.WriteLine($"Cajero: {name}");
+    Console.WriteLine($"Productos: {productQty}");
+    Console.WriteLine($"Subtotal: {productSum}");
+    Console.WriteLine($"Descuento: {discount}");
+    Console.WriteLine($"Recargo: {totalCharge}");
+    for (int i = 0; i < 30; i++) Console.Write('-');
+    Console.WriteLine();
+    Console.WriteLine($"Total: {total}");
+    for (int i = 0; i < 30; i++) Console.Write('-');
+
+Console.WriteLine();
+
     
